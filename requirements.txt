@@ -6,3 +6,4 @@ scikit-learn
 pydantic
 plotly
 pandas
+python-multipart
