@@ -114,13 +114,9 @@ with gr.Blocks(title="California House Price Predictor") as demo:
 # Mount Gradio app to FastAPI
 app = gr.mount_gradio_app(app, demo, path="/ui")
 
-
-# Accept both GET and HEAD on root so hosting health checks using HEAD succeed.
-@app.api_route("/", methods=["GET", "HEAD"])
+@app.get("/")
 def read_root():
     return {"message": "Welcome to the House Price Predictor API. Go to /ui for the interface or POST to /predict."}
 
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+    uvicorn.run("main:app", host="0.0.0.0", port=10000)
